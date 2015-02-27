@@ -1,0 +1,30 @@
+[Package]
+- hanb.elasticsearch.expert.plugin.registry
+	plugin 등록을 위한 패키지.
+- hanb.elasticsearch.expert.rest
+	rest action 생성을 위한 패키지.
+
+[Class]
+- HealthCheckPlugin
+	elasticsearch 에 custom rest action 을 등록하기 위한 클래스.
+- HealthCheckAction
+	custom rest action 기능 구현을 위한 클래스.
+
+[Resources]
+- es-plugin.properties
+	elasticsearch 실행 시 plugin 을 등록 하기 위한 정보.
+
+[Assemblies]
+- plugin.xml
+	maven build 시 bin/plugin 으로 설치가 가능 하도록 zip 파일을 생성하기 위한 정보.
+	
+[Installation]
+- plugin folder 생성
+	plugins/health-check 로 폴더 생성.
+		HealthCheckPlugin 클래스에서 name() 부분에 해당하는 정보이다.
+- 설치
+	빌드 결과물인 jar 파일을 해당 플러그인 폴더로 복사를 하거나,
+	zip 파일을 웹서버에 등록 후 bin/plugin --install http://localhost:8080/hanb-elasticsearch-expert-plugin-0.0.1.zip 과 같이 설치.
+	
+# 설치 이후 elasticsearch 를 재시작 한후 아래 URL 로 확인.
+	http://localhost:9200/_healthcheck
